@@ -1,2 +1,1 @@
-class Player < Struct.new(:name, :mark)
-end
+class Player < Struct.new(:name, :mark); end
