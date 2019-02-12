@@ -15,10 +15,10 @@ class Board
   end
 
   def add_piece(column, player)
-    if column_available?(column)
-      grid[highest_empty_row(column)][column] = player.mark
+    if row_number = highest_empty_row(column)
+      grid[ROWS_COUNT-row_number-1][column] = player.mark
     else
-      raise 'Column is already full'
+      raise "Column:#{column}is already full."
     end
   end
 
@@ -31,11 +31,11 @@ class Board
 
   private
 
-  def column_available?(column)
-    grid.map { |row| row[column] }.any? { |slot| slot == EMPTY_SLOT }
-  end
-
   def highest_empty_row(column)
     # return the highest empty row number to which column the player can add a new piece
+    grid.reverse.each.with_index do |row, row_index|
+      return row_index if row[column] == EMPTY_SLOT
+    end
+    nil
   end
 end
