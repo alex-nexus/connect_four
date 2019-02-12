@@ -1,36 +1,37 @@
+require 'matrix'
+
 class Policy < Struct.new(:board)
   """
-  this policy object determines if the board is in a winning condition
+  this policy object determines if the board is in a finished condition
   return true if there is a winner and false otherwise
   (any one player has connected 4 pieces)
   """
 
   def finished?
     # if any rows, columns or diagnoals have more than 4 connected pieces, then the game is finished
-    check_rows && check_columns && check_diagonals
+    has_row_with_4_connected? || has_column_with_4_connected? || check_diagonals
   end
 
   private
 
-  def check_rows
-    board.grid.any? do |row|
-      has_4_connected_pieces?(row)
-    end
+  def has_row_with_4_connected?
+    board.rows.any? {|row| has_connected_pieces?(row) }
   end
 
-  def check_columns
-    # Turn row info columns with transpose
-    board.grid.transpose.any? do |col|
-      has_4_connected_pieces?(row)
-    end
+  def has_column_with_4_connected?
+    board.columns.any? { |column| has_connected_pieces?(column) }
   end
 
   def check_diagonals
-    # a little bit tricky I can work on this later
+    board.diagonals.any? { |diagonal| has_connected_pieces?(diagonal) }
   end
 
-  def has_4_connected_pieces?(line)
-    # return true if the row has more than 4 connected pieces
-    # return false otherwise
+  def has_connected_pieces?(all_pieces, count=4)
+    # return true if the row has more than 4 connected pieces and false otherwise
+    all_pieces.each_cons(count).each do |con_pieces|
+      # all pieces are of the same value
+      return true if con_pieces.uniq == ['O'] || con_pieces.uniq == ['X']
+    end
+    false
   end
 end
