@@ -2,7 +2,7 @@ require 'matrix'
 
 class Policy < Struct.new(:board)
   """
-  this policy object determines if the board is in a winning condition
+  this policy object determines if the board is in a finished condition
   return true if there is a winner and false otherwise
   (any one player has connected 4 pieces)
   """
@@ -23,8 +23,7 @@ class Policy < Struct.new(:board)
   end
 
   def check_diagonals
-    print 'check_diagonals'
-    # a little bit tricky I can work on this later
+    board.diagonals.any? { |diagonal| has_connected_pieces?(diagonal) }
   end
 
   def has_connected_pieces?(all_pieces, count=4)

@@ -33,7 +33,7 @@ RSpec.describe Policy do
         board.add_piece(1, player1)
         board.add_piece(1, player1)
 
-        board.print_board
+        # board.print_board
       end
 
       it { should be_finished }
@@ -45,7 +45,8 @@ RSpec.describe Policy do
         board.add_piece(2, player1)
         board.add_piece(3, player1)
         board.add_piece(4, player1)
-        board.print_board
+
+        # board.print_board
       end
 
       it { should be_finished }
@@ -67,7 +68,7 @@ RSpec.describe Policy do
         board.add_piece(4, player2)
         board.add_piece(4, player1)
 
-        board.print_board
+        # board.print_board
       end
 
       it { should be_finished }
