@@ -10,16 +10,16 @@ RSpec.describe Policy do
   subject(:policy) { Policy.new(board) }
 
   describe '#has_4_connected_pieces' do
-    it 'checks if an array has 4_connected_pieces' do
-      expect(policy.send(:has_4_connected_pieces?, ['O', 'O', 'O', 'O', '_', 'X'])).to eq true
+    it 'checks if an array has 4 connected_pieces' do
+      expect(policy.send(:has_connected_pieces?, ['O', 'O', 'O', 'O', '_', 'X'])).to eq true
     end
 
     it 'checks if an array has 4_connected_pieces' do
-      expect(policy.send(:has_4_connected_pieces?, ['_', 'X', 'X', 'X', 'X', '_'])).to eq true
+      expect(policy.send(:has_connected_pieces?, ['_', 'X', 'X', 'X', 'X', '_'])).to eq true
     end
 
     it 'does not have 4_connected_pieces' do
-      expect(policy.send(:has_4_connected_pieces?, ['O', 'X', 'O', 'O', 'X', 'O'])).to eq false
+      expect(policy.send(:has_connected_pieces?, ['O', 'X', 'O', 'O', 'X', 'O'])).to eq false
     end
   end
 
@@ -32,6 +32,8 @@ RSpec.describe Policy do
         board.add_piece(1, player1)
         board.add_piece(1, player1)
         board.add_piece(1, player1)
+
+        board.print_board
       end
 
       it { should be_finished }
@@ -43,6 +45,7 @@ RSpec.describe Policy do
         board.add_piece(2, player1)
         board.add_piece(3, player1)
         board.add_piece(4, player1)
+        board.print_board
       end
 
       it { should be_finished }

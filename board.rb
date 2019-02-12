@@ -8,12 +8,6 @@ class Board
   ROWS_COUNT = 6
   COLUMNS_COUNT = 7
 
-  attr_accessor :grid
-
-  def initialize
-    @grid = Array.new(ROWS_COUNT) { Array.new(COLUMNS_COUNT) { EMPTY_SLOT } }
-  end
-
   def add_piece(column, player)
     if row_number = highest_empty_row(column)
       grid[ROWS_COUNT-row_number-1][column] = player.mark
@@ -22,8 +16,17 @@ class Board
     end
   end
 
+  def rows
+    grid
+  end
+
+  def columns
+    # Turn row info columns with transpose
+    grid.transpose
+  end
+
   def print_board
-    @grid.each do |row|
+    grid.each do |row|
       print row
       print "\n"
     end
@@ -37,5 +40,9 @@ class Board
       return row_index if row[column] == EMPTY_SLOT
     end
     nil
+  end
+
+  def grid
+    @grid ||= Array.new(ROWS_COUNT) { Array.new(COLUMNS_COUNT) { EMPTY_SLOT } }
   end
 end
