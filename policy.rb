@@ -7,7 +7,7 @@ class Policy < Struct.new(:board)
 
   def finished?
     # if any rows, columns or diagnoals have more than 4 connected pieces, then the game is finished
-    check_rows && check_columns && check_diagonals
+    check_rows || check_columns || check_diagonals
   end
 
   private
@@ -20,8 +20,8 @@ class Policy < Struct.new(:board)
 
   def check_columns
     # Turn row info columns with transpose
-    board.grid.transpose.any? do |col|
-      has_4_connected_pieces?(row)
+    board.grid.transpose.any? do |column|
+      has_4_connected_pieces?(column)
     end
   end
 
@@ -29,8 +29,12 @@ class Policy < Struct.new(:board)
     # a little bit tricky I can work on this later
   end
 
-  def has_4_connected_pieces?(line)
-    # return true if the row has more than 4 connected pieces
-    # return false otherwise
+  def has_4_connected_pieces?(pieces)
+    # return true if the row has more than 4 connected pieces and false otherwise
+    pieces.each_cons(4).each do |four_pieces|
+      # all pieces are of the same value
+      return true if four_pieces.uniq == ['O'] || four_pieces.uniq == ['X']
+    end
+    false
   end
 end

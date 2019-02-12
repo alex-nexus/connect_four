@@ -32,7 +32,7 @@ RSpec.describe Board do
       expect(board.send(:highest_empty_row, 1)).to eq 5
 
       board.add_piece(1, player2)
-      expect(board.send(:highest_empty_row, 1)).to be_nil      
+      expect(board.send(:highest_empty_row, 1)).to be_nil
     end
 
     it 'does not allow to add more than 6 pieces' do
