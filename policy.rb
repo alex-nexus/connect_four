@@ -1,11 +1,11 @@
-class Policy
+class Policy < Struct.new(:board)
   """
   this policy object determines if the board is in a winning condition
   return true if there is a winner and false otherwise
   (any one player has connected 4 pieces)
   """
 
-  def finished?(board)
+  def finished?
     # if any rows, columns or diagnoals have more than 4 connected pieces, then the game is finished
     check_rows && check_columns && check_diagonals
   end

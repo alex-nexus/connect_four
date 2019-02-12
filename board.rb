@@ -15,7 +15,7 @@ class Board
   end
 
   def add_piece(column, player)
-    if ca = column_available?(column)
+    if column_available?(column)
       grid[highest_empty_row(column)][column] = player.mark
     else
       raise 'Column is already full'

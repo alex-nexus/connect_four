@@ -28,7 +28,7 @@ class ConnectFour
   private
 
   def ask_player_where_to_add_piece(player)
-    puts "#{player.name}, introduce a column:"
+    puts "#{player.name}, which column do you want to add the piece:"
     input = STDIN.gets.chomp
     return input.to_i - 1
   end

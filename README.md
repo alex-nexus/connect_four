@@ -1,3 +1,8 @@
+# install library
+```
+bundle
+```
+
 # start the game
 ```
 ruby run.py

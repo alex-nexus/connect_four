@@ -1,5 +1,5 @@
-gem "rspec"
+source 'https://rubygems.org'
 
-group :development do
-  gem "byebug"  
-end
+gem "rspec"
+gem 'byebug'
+gem 'pry'

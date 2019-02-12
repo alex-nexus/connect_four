@@ -1,3 +1,3 @@
-require_relative "connect_four"
+require_relative 'connect_four'
 
 ConnectFour.new.start

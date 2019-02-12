@@ -1,4 +1,5 @@
-require 'board'
+require_relative '../board'
+require_relative '../policy'
 
 RSpec.describe Policy do
   let(:board)  { Board.new }
