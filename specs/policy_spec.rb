@@ -11,15 +11,15 @@ RSpec.describe Policy do
 
   describe '#has_4_connected_pieces' do
     it 'checks if an array has 4 connected_pieces' do
-      expect(policy.send(:has_connected_pieces?, ['O', 'O', 'O', 'O', '_', 'X'])).to eq true
+      expect(policy.send(:has_4_connected_pieces?, ['O', 'O', 'O', 'O', '_', 'X'])).to eq true
     end
 
     it 'checks if an array has 4_connected_pieces' do
-      expect(policy.send(:has_connected_pieces?, ['_', 'X', 'X', 'X', 'X', '_'])).to eq true
+      expect(policy.send(:has_4_connected_pieces?, ['_', 'X', 'X', 'X', 'X', '_'])).to eq true
     end
 
     it 'does not have 4_connected_pieces' do
-      expect(policy.send(:has_connected_pieces?, ['O', 'X', 'O', 'O', 'X', 'O'])).to eq false
+      expect(policy.send(:has_4_connected_pieces?, ['O', 'X', 'O', 'O', 'X', 'O'])).to eq false
     end
   end
 
